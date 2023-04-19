@@ -1,0 +1,89 @@
+1. UI Automation 
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class QAAssessment {
+
+public static void main(String[] args) 
+{
+
+WebDriverManager.chromedriver().setup();
+WebDriver driver= new ChromeDriver();    //launching the chrome driver
+
+String URL= "https://www.amazon.com/"; 
+
+driver.navigate().to(URL);              // Navigating to the URL
+
+driver.manage().window().maximize(); 
+
+Thread.sleep(2000);                     //waiting for the window to get maximize
+
+WebElement ele = driver.findElement(By.id("twotabsearchtextbox").sendkeys("Iphone");                         //Entering "Iphone" in search bar
+
+WebElement ele1 = driver.findElement(By.xpath("//div[@class='nav-search-submit nav-sprite']")).click();       // Clicking on the search button
+
+Thread.sleep(2000);                                                                                         
+
+WebElement first_result= driver.findElement(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']")); //Verifying the first result                                             
+
+String first_result_text=first_result.getText();                
+                                                                      
+
+if(first_result_text.contains("Apple iphone"))  //Verify the correct Product is displaying after search
+{
+System.out.println("Results Matched;Test Case Passed");
+}
+else{
+System.out.println("Results NotMatched;Test Case Failed");
+}
+
+
+driver.close();                                                        //Close the browser
+
+}
+}
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+2. API Examples
+
+
+Using API Endpoint: https://jsonplaceholder.typicode.com/posts
+
+1. POST request- In postman setting the request method to POST and the request URL to https://jsonplaceholder.typicode.com/posts, Select "raw" in the body tab and format as "JSON".Paste the below JSON Body into the editor and click "Send" it will create a new post.
+
+{
+"title": "New Post",
+"body": "This is a new post",
+"userId":1
+}
+
+
+
+2. PUT Request- To update an existing Post we use PUT method. In postman setting the request method to PUT and the requested URL to https://jsonplaceholder.typicode.com/posts/1 , where 1 is the ID of the post to be updated.Select "raw" in the body tab and format as "JSON".Paste the below JSON Body into the editor and click "Send" it will create a new post.
+
+
+{
+"id":1,
+"title": "Updated Post",
+"body": "This post is updated",
+"userId":1
+}
+
+3. GET Request- To retrieve a specific post we use GET method with the POST ID as query parameter. In postman set the requested method to GET and the request URL to https://jsonplaceholder.typicode.com/posts/1 where 1 is the ID of the Post to be retrieved. Click on "Send" button to send the request. 
+1 will displayed in console response.
+
+4. DELETE Request- To delete a specific post we use DELETE method with the POST ID as query parameter. In postman set the requested method to DELETE and the request URL to https://jsonplaceholder.typicode.com/posts/1 where 1 is the ID of the Post to be deleted. Click on "Send" button to send the request.
+1 will deleted from the post reponse body.
+
+
